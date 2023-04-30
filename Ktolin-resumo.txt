@@ -1,0 +1,317 @@
+﻿﻿-----DESCRIÇAO:{
+
+Unit= retorna nulo
+$prefix=ele organiza as variaveis dentro do println sem precisar de ""+(igual o java)
+vararg = tipo de variavel que agrupa(é tipo um array de mensagens)
+* = quando chamar 2 métotods juntos tem q incluir o *
+?=no lado de um tipo de uma viaveç ele pode aceitar nul
+Ranges = 0...1
+== é igual o java
+=== compara com o objeto 
+override = descrever uma funcao da classe filha da mae
+Sealed classes= somente no mesmo pacote
+Classe objeto(é mais simplificado q uam classe)
+
+
+}
+
+as variáveis e funções precisam ser declaradas com um tipo específico. 
+Já Java é uma linguagem de tipagem dinâmica!
+
+
+
+--------atributos
+
+
+
+(mutável)var a: String = "initial"
+
+(imutavel)val b: Int = 1
+val c =3
+
+
+
+
+------FUNÇOES
+
+funcao é igua métodp em java
+exemplo:
+
+fun printMessage (message: String ): Unit {
+        println(message)
+         
+    }
+fun main() {
+   
+    printMessage("oi")
+    
+}
+
+fun primeiraFuncao(message: String): Unit{
+    
+    println(message)
+}
+
+//pra chamar no main
+primeiraFuncao("ttt")
+
+
+// já envia variavel padrao no parametro
+fun segundaFuncao(message: String, prefix: String ="info") {
+    
+    println("[$prefix]$message")
+}
+
+
+//funcao somar retorno(detalhe q o Int começa com maiusculo)
+//
+fun sum(x: Int, y: Int): Int{
+    return x + y   
+}
+
+//outro exemplo pra calcular
+fun multiply(x: Int, y: Int)=x*y
+
+
+
+
+  // IMprimir vários resultados
+    fun printALL(vararg messages:String){ // método com tipo vararg
+        for (m in messages) println(m) //(repeticao for)
+      printALL("aaa","bbbb","ccvccccc")//resultado
+        
+    }
+    
+
+//IMprimir vários resultados com prefixo fixo
+ fun printALL2(vararg messages:String,prefix: String ) {
+        for (m in messages) println(prefix+m) }
+   
+    printALL2("aaa","bbbb","ccvccccc",
+    prefix="ID = ")
+
+
+
+//Chamando 2 métodos
+  fun log(vararg entries: String ) {
+       printALL(*entries)  }
+        
+
+
+//Condição simples
+fun someCondition() = true
+     val d: Int
+     var x=2;
+
+    if(x in 1..5()){
+          d=1
+    }else{
+          d=2
+    } println(d)  }
+
+
+//FUNCAO PRA CALCULAR %
+ fun calcularImposto(salario: Double): Double {
+    	val aliquota = when {
+            (salario >= 0 && salario <= 1100) -> 0.05
+              (salario >= 1101 && salario < 2500) -> 0.10
+               else -> 0.15
+        }
+    	return aliquota * salario }}
+
+val valorSalario = 10.5
+    val valorBeneficios = 5
+
+    val valorImposto = ReceitaFederal.calcularImposto(valorSalario);
+    val saida = valorSalario - valorImposto + valorBeneficios;
+
+    println(String.format("%.2f", saida));
+    
+----------
+    
+
+//monstrando o tamanho dos caracteres
+
+  var neverNull: String ="aa"
+  
+  fun strLength(str: String?): Int {
+  return str?.length ?: 0    }
+  println(strLength(neverNull))     
+   
+}
+
+
+-----CLASSE
+
+
+--Data Classe( métodos equals() e hashCode() automaticamente)
+
+
+--class Customer
+
+class Contact(val id: Int, var email: String)   //Contrutor com parametros (igual o java)
+
+val customr = Customer()  instaciando objeto
+
+val contact = Contact(1,"xavier@gmail.com") //intacianod outro objeto
+
+println(contact.id)
+
+//classe Genericas
+
+class MutableStack<E>(vararg items: E){ 
+
+private val elements = items.toMutableList()
+
+fun push(element: E) = elements.add(element)
+
+fun peek(): E = elements.last()
+
+fun pop(): E = elements.removeAt(elements.size - 1)
+
+fun isEmpty() = elements.isEmpty()
+
+fun size() = elements.size
+
+override fun toString()="MutableStack(${elements.joinToString()}}"
+}
+
+main
+
+val stack=MutableStack(0.62,3.14,2.7)
+stack.push(9.87)
+println(stack)
+    
+//repiticao for removendi um por um
+for(i in 1..stack.size()) {
+println("pop(): ${stack.pop()}")
+println(stack) }
+
+
+-----REPETICOES(CONTROLE DE FLUXO)
+
+-WHEN=SWITCH CASE  do java
+
+//when statement
+
+fun cases(obs: Any) {
+when (obj) {
+1 -> println("One")
+"Hello " - > println("Greeting(saudacoes)")
+is Long -> println("Long")
+!is String -> println("Not a string")
+else -> println("Unknown")
+} 
+
+
+//when expression(só executa uma linha verdadeira)
+
+fun whenAssign(obj: Any): Any {
+val result =when (obj) {
+1 -> "one"
+"Hello" -> 1
+is Long -> false
+else ->42
+}
+return result
+}
+
+
+
+
+//do/ while = JAVA
+
+
+//for (pulando em 2  )
+// de trás pra frente só botar o downTo no lugar do steep
+
+for(i in 2..8 step 2){
+print(i)
+}
+
+
+
+---------ORIENTAÇA A OBJETOS
+
+encapslumamto nao é só GET E SETERS
+
+
+//herança
+
+
+open class Dog {
+open fun sayHello(){
+println("win won")
+}
+}
+
+
+class Yorkshire : Dog(){
+override fun sayHello() {
+println("wif wif")
+}
+}
+
+main
+
+val dog: Dog = Yorkshireh()
+dog.sayHello()
+
+
+
+//CLASSE DATA
+
+data calss User(val name: String, val id: Int){
+override fun equals(other: Any?) = 
+other is User && other .id ==this.id
+}
+
+main
+val User =("Alex,1")
+println(user)
+
+
+
+
+////FUNCAO de ESSCOPO 
+
+FUNÇAO LET
+
+fun customPrint(s: String){
+print(s.uppercase()) // deixa maisuculo
+}
+
+main
+
+val empty = "teste".let{
+customPrint(it)
+it.isEmpty()
+}
+println("is empty: $empty")
+
+
+//FUNCAO WITH E RUN (como se fosseo this.d od java) exemplo:
+class Config(val host: String, val port: Int)
+
+main
+val config = Config(host = "127.0.0.1",port = 9000)
+
+with(config){
+println("$host:$port") }
+
+config.run{
+println("$host:$port") }
+
+//Funcoes pendentes = Apply,Also
+
+
+
+//TIPOS DE FUNÇOES
+
+INFIX
+
+infix fun Int.times(str: String) = str.repeat(this)
+println(5 times "Bye")
+
+//tipos de funcoes pendentes=operador,higher order functions parameters/returning,lambada,Extensio, function e properties/generics
+Supend function.
